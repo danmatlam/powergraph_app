@@ -31,7 +31,7 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <GridView container >
         <Grid item xs={0} md={2} />
-        <GridBody item xs={10} md={8}>
+        <GridBody item xs={12} md={8}>
           <AppTabs>
             <ChartTransportistaMes />
             <ChartTransportista />
