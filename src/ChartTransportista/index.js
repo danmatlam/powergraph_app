@@ -5,7 +5,6 @@ import _ from 'lodash';
 import Chart from './Chart';
 import { Grid, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { JSONTree } from 'react-json-tree';
 
 const init = {
     data_set: data_filtrada,
