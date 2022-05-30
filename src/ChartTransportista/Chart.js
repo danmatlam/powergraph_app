@@ -31,7 +31,7 @@ const theme = {
 const Chart = ({ data /* see data tab */ }) => (
     <div style={{
          width: '100%', 
-         height: '70vh', 
+         height: '60vh', 
         }}>
         <ResponsiveBar
             data={data}
