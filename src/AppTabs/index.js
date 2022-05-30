@@ -55,7 +55,7 @@ export default function AppTabs({ children }) {
 
   return (
     < >
-      <AppBar position="static">
+      <AppBar position="static" >
         <Tabs
           value={value}
           onChange={handleChange}
@@ -63,6 +63,7 @@ export default function AppTabs({ children }) {
           textColor="inherit"
           variant="fullWidth"
           aria-label="full width tabs example"
+          style={{background:'#1C1D22'}}
         >
           <Tab label="Meses" {...a11yProps(0)} />
           <Tab label="Transportista" {...a11yProps(1)} />

@@ -5,7 +5,7 @@ import _ from 'lodash';
 import Chart from './Chart';
 import { Grid, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-
+import { JSONTree } from 'react-json-tree';
 
 const init = {
     data_set: data_filtrada,
@@ -16,21 +16,24 @@ const months = [
 ]
 
 const avaiableTransportistas = () => {
-    let transportistas = _.uniqBy(init.data_set, 'transport_code').map(item=> (
-        { id: item.transport_code , name: item.transport_code, selected: false }
+    let transportistas = _.uniqBy(init.data_set, 'transport_code').map(item => (
+        { id: item.transport_code, name: item.transport_code, selected: false }
     ));
     transportistas[0].selected = true;
     return transportistas;
 };
 
-const CustomGrid = styled(Grid)(({ theme }) => ({
+const parseMonth = (data) => data.map(item => ({ ...item, mes: months[parseInt(item.mes) - 1] }));
+
+
+const ChartGrid = styled(Grid)(({ theme }) => ({
     background: "#1C1D22",
     borderRadius: '9pt',
     overflow: 'hidden',
     padding: '1em',
     gap: '1em',
-
 }));
+
 
 const ChartTransportista = () => {
     const [payload, setPayload] = useState(init.data_set);
@@ -38,35 +41,31 @@ const ChartTransportista = () => {
 
 
     useEffect(() => {
-        const currTransportista = transportistas.find(item=>item.selected).id;
+        const currTransportista = transportistas.find(item => item.selected).id;
         const auxPayload = data_filtrada.filter(item => parseInt(item.transport_code) === parseInt(currTransportista));
         setPayload(auxPayload);
     }, [transportistas]);
 
 
+
     return (
-        <div>
-            <CustomGrid container spacing={0}>
-                <Grid item xs={12}>
-                    <Typography variant="h5" component="div">
-                        Filtre la producción por transportista
-                    </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                    <SelectTransportistaInput
-                        transportistas={transportistas}
-                        setTransportistas={setTransportistas}
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <Chart data={payload.map(item=> ({...item, mes: months[item.mes-1]}))} />
-                </Grid>
-            </CustomGrid>
-
-
-
-        </div>
+        <ChartGrid container spacing={0}>
+            <Grid item xs={12}>
+                <Typography variant="h5" component="div">
+                    Filtre la producción por transportista
+                </Typography>
+            </Grid>
+            <Grid item xs={12}>
+                <SelectTransportistaInput
+                    transportistas={transportistas}
+                    setTransportistas={setTransportistas}
+                />
+            </Grid>
+            <Grid item xs={12}>
+                <Chart data={parseMonth(payload)} />
+            </Grid>
+        </ChartGrid>
     )
 };
 
-export default ChartTransportista
+export default ChartTransportista;

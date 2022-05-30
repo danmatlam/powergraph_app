@@ -9,12 +9,14 @@ import ChartTransportista from './ChartTransportista';
 
 
 const GridBody = styled(Grid)(({ theme }) => ({
-  // ...theme.typography.body2,
   color: theme.palette.text.secondary,
   backgroundColor: theme.palette.mode === 'dark' ? '#131417' : '#fff',
   height: "100vh",
+  overflow:'auto'
+}));
 
-
+const GridView = styled(Grid)(({ theme }) => ({
+  background:"#1C1D22"
 }));
 
 
@@ -27,21 +29,16 @@ const darkTheme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={darkTheme}>
-      <Grid container >
-        <Grid item xs={1}>
-
-        </Grid>
-        <GridBody item xs={10}>
+      <GridView container >
+        <Grid item xs={0} md={2} />
+        <GridBody item xs={10} md={8}>
           <AppTabs>
             <ChartTransportistaMes />
             <ChartTransportista />
           </AppTabs>
         </GridBody>
-        <Grid item xs={1}>
-
-        </Grid>
-
-      </Grid>
+        <Grid item xs={0} md={2} />
+      </GridView>
 
 
     </ThemeProvider>
