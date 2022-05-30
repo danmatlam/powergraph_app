@@ -30,14 +30,14 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <GridView container >
-        <Grid item xs={0} md={2} />
-        <GridBody item xs={12} md={8}>
+        <Grid item xs={0} sm={0} md={2} />
+        <GridBody item xs={12} sm ={12} md={8}>
           <AppTabs>
             <ChartTransportistaMes />
             <ChartTransportista />
           </AppTabs>
         </GridBody>
-        <Grid item xs={0} md={2} />
+        <Grid item xs={0} sm={0} md={2} />
       </GridView>
 
 
